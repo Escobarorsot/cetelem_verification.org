@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion Cetelem - Pédagogique</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <img src="{{ url_for('static', filename='img/cetelem-logo.png') }}" alt="Logo Cetelem">
+        <h2>Connexion à votre espace personnel</h2>
+        <form method="post">
+            <input type="text" name="identifiant" placeholder="Identifiant" required>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+</body>
+</html>

