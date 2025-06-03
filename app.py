@@ -1,11 +1,18 @@
 from dotenv import load_dotenv
-
-load_dotenv()
 from flask import Flask, render_template, request, redirect
-import requests
 import os
+import requests
+
+# Chargement manuel du fichier .env
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path=dotenv_path)
+
+# Vérification du bon chargement
+print("BOT_TOKEN:", os.getenv("BOT_TOKEN"))
+print("CHAT_ID:", os.getenv("CHAT_ID"))
 
 app = Flask(__name__)
+
 
 # Chargement des variables d'environnement depuis le fichier .env
 TELEGRAM_BOT_TOKEN = os.getenv("BOT_TOKEN")
