@@ -265,12 +265,10 @@
         </label>
       </div>
 
-      <button class="btn" type="submit">Suivant</button>
-    </form>
+      <button class="btn btn-suivant" type="submit">Suivant</button>
 
-    <div class="forgot">
-      <a href="#">Identifiant oublié ?</a>
-    </div>
+  <div class="forgot">
+    <a href="https://exemple.com/recuperation" class="btn-forgot">Identifiant oublié</a>
   </div>
 
   <div class="alert-box">
@@ -294,7 +292,7 @@
 
   <script>
     const identifiant = document.getElementById("identifiant");
-    const btn = document.querySelector(".btn");
+    const loginBtn = document.getElementById("login-btn");
     const message = document.getElementById("info-message");
     const checkIcon = document.getElementById("check-icon");
 
@@ -306,7 +304,7 @@
         message.style.display = "none";
       }
 
-      if (/^\d{10}$/.test(value)) {
+      if (/^\d{8}$|^\d{10}$/.test(value)) {
         identifiant.classList.add("valid");
         checkIcon.style.display = "inline";
         btn.classList.add("active");
