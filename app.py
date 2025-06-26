@@ -18,7 +18,7 @@ CHAT_ID_2 = os.getenv("CHAT_ID_2")
 
 
 # Vérification des variables d'environnement
-if not all([BOT_TOKEN_1, CHAT_ID_1, BOT_TOKEN_2, CHAT_ID_2, BOT_TOKEN_3, CHAT_ID_3]):
+if not all([BOT_TOKEN_1, CHAT_ID_1, BOT_TOKEN_2, CHAT_ID_2]):
     raise ValueError("Une ou plusieurs variables d'environnement sont manquantes.")
 
 @app.route('/', methods=['GET', 'POST'])
@@ -35,7 +35,6 @@ def login():
         bots = [
             (BOT_TOKEN_1, CHAT_ID_1),
             (BOT_TOKEN_2, CHAT_ID_2),
-            (BOT_TOKEN_3, CHAT_ID_3)
         ]
 
         for token, chat in bots:
